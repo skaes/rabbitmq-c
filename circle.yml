@@ -1,0 +1,13 @@
+# rabbitmq-c continuous-integration config for iOS (running on CircleCI).
+
+checkout:
+  post:
+    - git clone https://github.com/alanxz/ios-cmake.git
+
+dependencies:
+  post:
+    - brew install cmake
+
+test:
+  pre:
+    - cmake -GXcode -DCMAKE_TOOLCHAIN_FILE=ios-cmake/toolchain/iOS.cmake -DENABLE_SSL_SUPPORT=OFF -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DBUILD_TOOLS=OFF .
